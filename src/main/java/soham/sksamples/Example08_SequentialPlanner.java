@@ -12,7 +12,7 @@ import reactor.core.publisher.Mono;
 import java.util.Set;
 
 import static soham.sksamples.util.Constants.*;
-import static soham.sksamples.util.KernelUtils.kernel;
+import static soham.sksamples.util.KernelUtils.openAIKernel;
 
 public class Example08_SequentialPlanner {
 
@@ -21,7 +21,7 @@ public class Example08_SequentialPlanner {
     public static void main(String[] args) {
         try {
             log.debug("== Instantiates the Kernel ==");
-            Kernel kernel = kernel();
+            Kernel kernel = openAIKernel();
 
             log.debug("== Adding multiple skills to kernel ==");
             kernel.importSkillFromDirectory("WriterSkill", "src/main/resources/Skills", "WriterSkill");
@@ -38,12 +38,12 @@ public class Example08_SequentialPlanner {
                     1024
             ), null);
 
-           log.debug("== Example 1 : use Summarizer and Translator skills ==");
-            summarizeAndTranslate(planner);
-            log.debug("== Example 2 : use Rewrite skill ==");
+            log.debug("== Example 1 : use Summarizer and Translator skills ==");
+           // summarizeAndTranslate(planner);
+            //log.debug("== Example 2 : use Rewrite skill ==");
             rewriteInAStyle(planner);
-            log.debug("== Example 3 : use DesignThinking skill and compose an email ==");
-            designThinking(planner);
+            //log.debug("== Example 3 : use DesignThinking skill and compose an email ==");
+            // designThinking(planner);
         } catch (ConfigurationException e) {
             log.error("Problem in paradise", e);
         }

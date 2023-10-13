@@ -26,11 +26,11 @@ public class Example06_SKwithCognitiveSearch {
     public static void main(String[] args) {
         try {
             log.debug("== Instantiates the Kernel with Azure Cognitive Search ==");
-            Kernel kernelWithACS = kernelWithEmbedding(true);
+            Kernel kernelWithEmbedding = openAIKernelWithEmbedding();
 
             log.debug("== Stores some data in-memory and Search for a query ==");
-            Mono<List<MemoryQueryResult>> relevantMemory = createIndexIfNotExists(kernelWithACS)
-                    .then(searchMemory(kernelWithACS, "What is Prompt Engineering?", MEMORY_COLLECTION_NAME));
+            Mono<List<MemoryQueryResult>> relevantMemory = createIndexIfNotExists(kernelWithEmbedding)
+                    .then(searchMemory(kernelWithEmbedding, "What is Prompt Engineering?", MEMORY_COLLECTION_NAME));
 
             log.debug("== Extracts the results from the indexed search ==");
             List<MemoryQueryResult> relevantMems = relevantMemory.block();
@@ -39,7 +39,7 @@ public class Example06_SKwithCognitiveSearch {
                     .append("Title: ").append(relevantMem.getMetadata().getDescription()));
 
             log.debug("== Instantiates another kernel with Summarizer Skills ==");
-            Kernel kernel = kernel();
+            Kernel kernel = openAIKernel();
             ReadOnlyFunctionCollection conversationSummarySkill =
                     kernel.importSkill(new ConversationSummarySkill(kernel), null);
             log.debug("== Summarizes results from search ==");

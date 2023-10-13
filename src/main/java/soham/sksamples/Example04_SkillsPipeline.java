@@ -8,7 +8,7 @@ import reactor.core.publisher.Mono;
 import soham.sksamples.skill.TextSkill;
 
 import static soham.sksamples.util.Constants.ChatTranscript;
-import static soham.sksamples.util.KernelUtils.kernel;
+import static soham.sksamples.util.KernelUtils.openAIKernel;
 
 public class Example04_SkillsPipeline {
 
@@ -17,7 +17,7 @@ public class Example04_SkillsPipeline {
     public static void main(String[] args) {
         try {
             log.debug("== Instantiates the Kernel ==");
-            Kernel kernel = kernel();
+            Kernel kernel = openAIKernel();
 
             log.debug("== Adding multiple skills to kernel ==");
             kernel.importSkill(new TextSkill(), null);

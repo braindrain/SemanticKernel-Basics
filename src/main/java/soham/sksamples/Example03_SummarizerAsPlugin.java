@@ -19,7 +19,7 @@ public class Example03_SummarizerAsPlugin {
         try {
             // util method to minimize repeating steps
             log.debug("== Instantiates the Kernel ==");
-            Kernel kernel = kernel();
+            Kernel kernel = openAIKernel();
 
             log.debug("== Load Conversation Summarizer Skill from plugins ==");
             ReadOnlyFunctionCollection conversationSummarySkill =

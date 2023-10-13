@@ -25,7 +25,7 @@ public class Example05_SKwithMemory {
         try {
 
             log.debug("== Instantiates the Embedding Kernel ==");
-            Kernel kernelWithEmbedding = kernelWithEmbedding(false);
+            Kernel kernelWithEmbedding = openAIKernelWithEmbedding();
             log.debug("== Stores some data in-memory and Search for a query ==");
             Mono<List<MemoryQueryResult>> relevantMemory = storeInKernelMemory(kernelWithEmbedding, data(), MEMORY_COLLECTION_NAME)
                     .then(searchMemory(kernelWithEmbedding, "How do I get started?", MEMORY_COLLECTION_NAME));
@@ -35,7 +35,7 @@ public class Example05_SKwithMemory {
             relevantMems.forEach(relevantMem -> memory.append("URL: ").append(relevantMem.getMetadata().getId())
                     .append("Title: ").append(relevantMem.getMetadata().getDescription()));
             log.debug("== Instantiates another kernel with Summarizer Skills ==");
-            Kernel kernel = kernel();
+            Kernel kernel = openAIKernel();
             ReadOnlyFunctionCollection conversationSummarySkill =
                     kernel.importSkill(new ConversationSummarySkill(kernel), null);
             log.debug("== Summarizes results from search ==");

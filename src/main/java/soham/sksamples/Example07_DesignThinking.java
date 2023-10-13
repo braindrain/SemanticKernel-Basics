@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import reactor.core.publisher.Mono;
 
 import static soham.sksamples.util.Constants.CallTranscript;
-import static soham.sksamples.util.KernelUtils.kernel;
+import static soham.sksamples.util.KernelUtils.openAIKernel;
 
 public class Example07_DesignThinking {
 
@@ -17,7 +17,7 @@ public class Example07_DesignThinking {
     public static void main(String[] args) {
         try {
             log.debug("== Instantiates the Kernel ==");
-            Kernel kernel = kernel();
+            Kernel kernel = openAIKernel();
 
             log.debug("== Adding multiple skills to kernel ==");
             kernel.importSkillFromDirectory("DesignThinkingSkill", "src/main/resources/Skills", "DesignThinkingSkill");

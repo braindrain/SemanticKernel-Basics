@@ -8,7 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static soham.sksamples.util.Constants.*;
-import static soham.sksamples.util.KernelUtils.kernel;
+import static soham.sksamples.util.KernelUtils.openAIKernel;
 
 public class Example09_ActionPlanner {
 
@@ -17,7 +17,7 @@ public class Example09_ActionPlanner {
     public static void main(String[] args) {
         try {
             log.debug("== Instantiates the Kernel ==");
-            Kernel kernel = kernel();
+            Kernel kernel = openAIKernel();
 
             log.debug("== Adding multiple skills to kernel ==");
             kernel.importSkillFromDirectory("WriterSkill", "src/main/resources/Skills", "WriterSkill");
@@ -30,9 +30,9 @@ public class Example09_ActionPlanner {
             log.debug("== Example 1 : use Summarizer and Translator skills ==");
             translate(planner);
             log.debug("== Example 2 : use Rewrite skill ==");
-            rewriteInAStyle(planner);
-            log.debug("== Example 3 : use DesignThinking skill and compose an email ==");
-            designThinking(planner);
+            //rewriteInAStyle(planner);
+           // log.debug("== Example 3 : use DesignThinking skill and compose an email ==");
+           // designThinking(planner);
         } catch (ConfigurationException e) {
             log.error("Problem in paradise", e);
         }

@@ -19,7 +19,7 @@ public class Example02_SummarizerAsPrompt {
     public static void main(String[] args) {
         try {
             log.debug("== Instantiates the Kernel ==");
-            Kernel kernel = kernel();
+            Kernel kernel = openAIKernel();
             ReadOnlyFunctionCollection skill = kernel.importSkillFromDirectory("SummarizeSkill", "src/main/resources/Skills", "SummarizeSkill");
             CompletionSKFunction summarizeFunction = skill.getFunction("Summarize", CompletionSKFunction.class);
 
